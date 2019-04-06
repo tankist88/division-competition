@@ -48,6 +48,10 @@ import resourceProgress, {
 import buildingProcess, {
   BuildingProcessState
 } from 'app/entities/building-process/building-process.reducer';
+// prettier-ignore
+import employee, {
+  EmployeeState
+} from 'app/entities/employee/employee.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -70,6 +74,7 @@ export interface IRootState {
   readonly building: BuildingState;
   readonly resourceProgress: ResourceProgressState;
   readonly buildingProcess: BuildingProcessState;
+  readonly employee: EmployeeState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -94,6 +99,7 @@ const rootReducer = combineReducers<IRootState>({
   building,
   resourceProgress,
   buildingProcess,
+  employee,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar
 });
