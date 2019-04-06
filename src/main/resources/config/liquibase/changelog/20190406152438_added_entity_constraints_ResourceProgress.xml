@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity ResourceProgress.
+    -->
+    <changeSet id="20190406152438-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="resource_id"
+                                 baseTableName="resource_progress"
+                                 constraintName="fk_resource_progress_resource_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="resource"/>
+
+        <addForeignKeyConstraint baseColumnNames="building_process_id"
+                                 baseTableName="resource_progress"
+                                 constraintName="fk_resource_progress_building_process_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="building_process"/>
+
+    </changeSet>
+</databaseChangeLog>

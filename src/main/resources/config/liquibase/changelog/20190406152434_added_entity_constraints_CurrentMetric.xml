@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity CurrentMetric.
+    -->
+    <changeSet id="20190406152434-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="subbranch_id"
+                                 baseTableName="current_metric"
+                                 constraintName="fk_current_metric_subbranch_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="subbranch"/>
+
+        <addForeignKeyConstraint baseColumnNames="metric_id"
+                                 baseTableName="current_metric"
+                                 constraintName="fk_current_metric_metric_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="metric"/>
+
+    </changeSet>
+</databaseChangeLog>

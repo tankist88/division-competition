@@ -1,0 +1,44 @@
+{
+    "name": "BattleMember",
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastModified",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "subbranch",
+            "otherEntityRelationshipName": "battleMember",
+            "relationshipName": "subbranch",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "battleType",
+            "otherEntityRelationshipName": "battleMember",
+            "relationshipName": "type",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190406152432",
+    "entityTableName": "battle_member",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

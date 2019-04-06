@@ -1,0 +1,35 @@
+{
+    "name": "BuildingProcess",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "resourceProgress",
+            "otherEntityRelationshipName": "buildingProcess",
+            "relationshipName": "resources"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "subbranch",
+            "otherEntityRelationshipName": "buildingProcess",
+            "relationshipName": "subbranch",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "building",
+            "otherEntityRelationshipName": "buildingProcess",
+            "relationshipName": "building",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190406152439",
+    "entityTableName": "building_process",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity BuildingProcess.
+    -->
+    <changeSet id="20190406152439-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="subbranch_id"
+                                 baseTableName="building_process"
+                                 constraintName="fk_building_process_subbranch_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="subbranch"/>
+
+        <addForeignKeyConstraint baseColumnNames="building_id"
+                                 baseTableName="building_process"
+                                 constraintName="fk_building_process_building_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="building"/>
+
+    </changeSet>
+</databaseChangeLog>
