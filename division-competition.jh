@@ -10,6 +10,14 @@ entity BattleMember {
     lastModified Instant required
 }
 
+entity Employee {
+	login String required,
+	firstName String required,
+    lastName String required,
+    secondName String,
+    birthDay Instant required
+}
+
 entity Subbranch {
 	tb Integer required,
     branch Integer,
@@ -63,6 +71,7 @@ entity BuildingProcess {
 }
 
 relationship ManyToOne {
+	Employee{subbranch} to Subbranch,
 	BuildingProcess{subbranch} to Subbranch,
 	BuildingProcess{building} to Building,
     ResourceProgress{resource} to Resource,
