@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Resource.
+    -->
+    <changeSet id="20190406152436-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="metric_id"
+                                 baseTableName="resource"
+                                 constraintName="fk_resource_metric_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="metric"/>
+
+        <addForeignKeyConstraint baseColumnNames="building_id"
+                                 baseTableName="resource"
+                                 constraintName="fk_resource_building_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="building"/>
+
+    </changeSet>
+</databaseChangeLog>
