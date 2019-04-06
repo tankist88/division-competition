@@ -1,0 +1,82 @@
+entity BattleType {
+	code String required,
+	name String required,
+    description String,
+    termInMonths Integer required,
+}
+
+entity BattleMember {
+    status Integer required,
+    lastModified Instant required
+}
+
+entity Subbranch {
+	tb Integer required,
+    branch Integer,
+    subbranch Integer,
+    name String
+}
+
+entity CurrentMetric {
+	count Integer,
+    finalizedCount Integer,
+    finalizeDate Instant,
+    lastModified Instant required
+}
+
+enum MetricTermType {
+    FIXED_DAY_OF_MONTH, 
+    N_WORK_DAY_OF_MONTH
+}
+
+entity Metric {
+	metricId Integer required,
+    metricName String required,
+    termType MetricTermType required,
+    term Integer required
+}
+
+enum ResourceType {
+	NEGATIVE, 
+    POSITIVE
+}
+
+entity Resource {
+	count Double required,
+    type ResourceType,
+    factor Double
+}
+
+entity Building {
+	name String required,
+    description String,
+    siteUrl String,
+    pictureFile String
+}
+
+entity ResourceProgress {
+	progress Double,
+    lastModified Instant required
+}
+
+entity BuildingProcess {
+}
+
+relationship ManyToOne {
+	BuildingProcess{subbranch} to Subbranch,
+	BuildingProcess{building} to Building,
+    ResourceProgress{resource} to Resource,
+	Resource{metric} to Metric,
+    CurrentMetric{subbranch} to Subbranch,
+    CurrentMetric{metric} to Metric,
+    BattleMember{subbranch} to Subbranch,
+    BattleMember{type} to BattleType
+}
+
+relationship OneToMany {
+	Building{resources} to Resource,
+    BuildingProcess{resources} to ResourceProgress
+}
+
+// Set service options to all except few
+service all with serviceImpl except ResourceType, MetricTermType
