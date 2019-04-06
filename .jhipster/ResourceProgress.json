@@ -1,0 +1,40 @@
+{
+    "name": "ResourceProgress",
+    "fields": [
+        {
+            "fieldName": "progress",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "lastModified",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "resource",
+            "otherEntityRelationshipName": "resourceProgress",
+            "relationshipName": "resource",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "buildingProcess",
+            "otherEntityName": "buildingProcess",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190406152438",
+    "entityTableName": "resource_progress",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

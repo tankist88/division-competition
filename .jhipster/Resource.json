@@ -1,0 +1,45 @@
+{
+    "name": "Resource",
+    "fields": [
+        {
+            "fieldName": "count",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "ResourceType",
+            "fieldValues": "NEGATIVE,POSITIVE"
+        },
+        {
+            "fieldName": "factor",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "metric",
+            "otherEntityRelationshipName": "resource",
+            "relationshipName": "metric",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "building",
+            "otherEntityName": "building",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190406152436",
+    "entityTableName": "resource",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

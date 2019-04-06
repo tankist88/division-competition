@@ -1,0 +1,49 @@
+{
+    "name": "CurrentMetric",
+    "fields": [
+        {
+            "fieldName": "count",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "finalizedCount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "finalizeDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "lastModified",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "subbranch",
+            "otherEntityRelationshipName": "currentMetric",
+            "relationshipName": "subbranch",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "metric",
+            "otherEntityRelationshipName": "currentMetric",
+            "relationshipName": "metric",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190406152434",
+    "entityTableName": "current_metric",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
