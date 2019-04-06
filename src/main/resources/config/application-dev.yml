@@ -37,8 +37,8 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:sqlserver://localhost:1433;database=divisionCompetition
-        username: SA
-        password: yourStrong(!)Password
+        username: div_comp_adm
+        password: 1234
         hikari:
             poolName: Hikari
             auto-commit: false

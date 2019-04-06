@@ -7,9 +7,9 @@ services:
         #     - ~/volumes/jhipster/tempdb/mssql/:/var/opt/mssql/data/
         environment:
             - ACCEPT_EULA=Y
-            - SA_PASSWORD=yourStrong(!)Password
+            - SA_PASSWORD=1234
             - MSSQL_DATABASE=divisionCompetition
             - MSSQL_SLEEP=7
         ports:
             - 1433:1433
-        command: /bin/bash -c '/opt/mssql/bin/sqlservr & echo "wait $$MSSQL_SLEEP sec for DB to start "; sleep $$MSSQL_SLEEP; /opt/mssql-tools/bin/sqlcmd -U sa -P $$SA_PASSWORD -d tempdb -q "EXIT(CREATE DATABASE $$MSSQL_DATABASE)"; wait;'
+        command: /bin/bash -c '/opt/mssql/bin/sqlservr & echo "wait $$MSSQL_SLEEP sec for DB to start "; sleep $$MSSQL_SLEEP; /opt/mssql-tools/bin/sqlcmd -U div_comp_adm -P $$SA_PASSWORD -d tempdb -q "EXIT(CREATE DATABASE $$MSSQL_DATABASE)"; wait;'
