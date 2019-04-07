@@ -77,6 +77,8 @@ relationship ManyToOne {
 	Employee{subbranch} to Subbranch,
 	BuildingProcess{subbranch} to Subbranch,
 	BuildingProcess{building} to Building,
+    Winner{subbranch} to Subbranch,
+    Winner{building} to Building,
     ResourceProgress{resource} to Resource,
 	Resource{metric} to Metric,
     CurrentMetric{subbranch} to Subbranch,
@@ -87,8 +89,6 @@ relationship ManyToOne {
 
 relationship OneToMany {
 	Building{resources} to Resource,
-    Winner{subbranch} to Subbranch,
-    Winner{building} to Building,
     BuildingProcess{resources} to ResourceProgress
 }
 
