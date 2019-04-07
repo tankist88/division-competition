@@ -8,6 +8,10 @@ import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipste
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { ISubbranch } from 'app/shared/model/subbranch.model';
+import { getEntities as getSubbranches } from 'app/entities/subbranch/subbranch.reducer';
+import { IBuilding } from 'app/shared/model/building.model';
+import { getEntities as getBuildings } from 'app/entities/building/building.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './winner.reducer';
 import { IWinner } from 'app/shared/model/winner.model';
 // tslint:disable-next-line:no-unused-variable
@@ -18,12 +22,16 @@ export interface IWinnerUpdateProps extends StateProps, DispatchProps, RouteComp
 
 export interface IWinnerUpdateState {
   isNew: boolean;
+  subbranchId: string;
+  buildingId: string;
 }
 
 export class WinnerUpdate extends React.Component<IWinnerUpdateProps, IWinnerUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
+      subbranchId: '0',
+      buildingId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -40,6 +48,9 @@ export class WinnerUpdate extends React.Component<IWinnerUpdateProps, IWinnerUpd
     } else {
       this.props.getEntity(this.props.match.params.id);
     }
+
+    this.props.getSubbranches();
+    this.props.getBuildings();
   }
 
   saveEntity = (event, errors, values) => {
@@ -63,7 +74,7 @@ export class WinnerUpdate extends React.Component<IWinnerUpdateProps, IWinnerUpd
   };
 
   render() {
-    const { winnerEntity, loading, updating } = this.props;
+    const { winnerEntity, subbranches, buildings, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -85,6 +96,32 @@ export class WinnerUpdate extends React.Component<IWinnerUpdateProps, IWinnerUpd
                     <AvInput id="winner-id" type="text" className="form-control" name="id" required readOnly />
                   </AvGroup>
                 ) : null}
+                <AvGroup>
+                  <Label for="subbranch.id">Subbranch</Label>
+                  <AvInput id="winner-subbranch" type="select" className="form-control" name="subbranch.id">
+                    <option value="" key="0" />
+                    {subbranches
+                      ? subbranches.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
+                <AvGroup>
+                  <Label for="building.id">Building</Label>
+                  <AvInput id="winner-building" type="select" className="form-control" name="building.id">
+                    <option value="" key="0" />
+                    {buildings
+                      ? buildings.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/winner" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />&nbsp;
                   <span className="d-none d-md-inline">Back</span>
@@ -103,6 +140,8 @@ export class WinnerUpdate extends React.Component<IWinnerUpdateProps, IWinnerUpd
 }
 
 const mapStateToProps = (storeState: IRootState) => ({
+  subbranches: storeState.subbranch.entities,
+  buildings: storeState.building.entities,
   winnerEntity: storeState.winner.entity,
   loading: storeState.winner.loading,
   updating: storeState.winner.updating,
@@ -110,6 +149,8 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getSubbranches,
+  getBuildings,
   getEntity,
   updateEntity,
   createEntity,
