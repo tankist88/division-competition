@@ -7,26 +7,26 @@ import { ICrudGetAllAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
-import { getEntities } from './building.reducer';
-import { IBuilding } from 'app/shared/model/building.model';
+import { getEntities } from './winner.reducer';
+import { IWinner } from 'app/shared/model/winner.model';
 // tslint:disable-next-line:no-unused-variable
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 
-export interface IBuildingProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
+export interface IWinnerProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
-export class Building extends React.Component<IBuildingProps> {
+export class Winner extends React.Component<IWinnerProps> {
   componentDidMount() {
     this.props.getEntities();
   }
 
   render() {
-    const { buildingList, match } = this.props;
+    const { winnerList, match } = this.props;
     return (
       <div>
-        <h2 id="building-heading">
-          Buildings
+        <h2 id="winner-heading">
+          Winners
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-            <FontAwesomeIcon icon="plus" />&nbsp; Create new Building
+            <FontAwesomeIcon icon="plus" />&nbsp; Create new Winner
           </Link>
         </h2>
         <div className="table-responsive">
@@ -34,36 +34,26 @@ export class Building extends React.Component<IBuildingProps> {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Site Url</th>
-                <th>Picture File</th>
-                <th>Winner</th>
                 <th />
               </tr>
             </thead>
             <tbody>
-              {buildingList.map((building, i) => (
+              {winnerList.map((winner, i) => (
                 <tr key={`entity-${i}`}>
                   <td>
-                    <Button tag={Link} to={`${match.url}/${building.id}`} color="link" size="sm">
-                      {building.id}
+                    <Button tag={Link} to={`${match.url}/${winner.id}`} color="link" size="sm">
+                      {winner.id}
                     </Button>
                   </td>
-                  <td>{building.name}</td>
-                  <td>{building.description}</td>
-                  <td>{building.siteUrl}</td>
-                  <td>{building.pictureFile}</td>
-                  <td>{building.winner ? <Link to={`winner/${building.winner.id}`}>{building.winner.id}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${building.id}`} color="info" size="sm">
+                      <Button tag={Link} to={`${match.url}/${winner.id}`} color="info" size="sm">
                         <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${building.id}/edit`} color="primary" size="sm">
+                      <Button tag={Link} to={`${match.url}/${winner.id}/edit`} color="primary" size="sm">
                         <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${building.id}/delete`} color="danger" size="sm">
+                      <Button tag={Link} to={`${match.url}/${winner.id}/delete`} color="danger" size="sm">
                         <FontAwesomeIcon icon="trash" /> <span className="d-none d-md-inline">Delete</span>
                       </Button>
                     </div>
@@ -78,8 +68,8 @@ export class Building extends React.Component<IBuildingProps> {
   }
 }
 
-const mapStateToProps = ({ building }: IRootState) => ({
-  buildingList: building.entities
+const mapStateToProps = ({ winner }: IRootState) => ({
+  winnerList: winner.entities
 });
 
 const mapDispatchToProps = {
@@ -92,4 +82,4 @@ type DispatchProps = typeof mapDispatchToProps;
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Building);
+)(Winner);

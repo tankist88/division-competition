@@ -15,6 +15,7 @@
     <include file="config/liquibase/changelog/20190406152438_added_entity_ResourceProgress.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190406152439_added_entity_BuildingProcess.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190406184051_added_entity_Employee.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190407225734_added_entity_Winner.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190406152432_added_entity_constraints_BattleMember.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190406152434_added_entity_constraints_CurrentMetric.xml" relativeToChangelogFile="false"/>
@@ -22,5 +23,7 @@
     <include file="config/liquibase/changelog/20190406152438_added_entity_constraints_ResourceProgress.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190406152439_added_entity_constraints_BuildingProcess.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190406184051_added_entity_constraints_Employee.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190406152433_added_entity_constraints_Subbranch.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190406152437_added_entity_constraints_Building.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

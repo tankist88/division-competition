@@ -38,6 +38,7 @@ export class Subbranch extends React.Component<ISubbranchProps> {
                 <th>Branch</th>
                 <th>Subbranch</th>
                 <th>Name</th>
+                <th>Winner</th>
                 <th />
               </tr>
             </thead>
@@ -53,6 +54,7 @@ export class Subbranch extends React.Component<ISubbranchProps> {
                   <td>{subbranch.branch}</td>
                   <td>{subbranch.subbranch}</td>
                   <td>{subbranch.name}</td>
+                  <td>{subbranch.winner ? <Link to={`winner/${subbranch.winner.id}`}>{subbranch.winner.id}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${subbranch.id}`} color="info" size="sm">

@@ -1,0 +1,27 @@
+{
+    "name": "Winner",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "subbranch",
+            "otherEntityRelationshipName": "winner",
+            "relationshipName": "subbranch"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "building",
+            "otherEntityRelationshipName": "winner",
+            "relationshipName": "building"
+        }
+    ],
+    "changelogDate": "20190407225734",
+    "entityTableName": "winner",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -44,6 +44,8 @@ export class SubbranchDetail extends React.Component<ISubbranchDetailProps> {
               <span id="name">Name</span>
             </dt>
             <dd>{subbranchEntity.name}</dd>
+            <dt>Winner</dt>
+            <dd>{subbranchEntity.winner ? subbranchEntity.winner.id : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/subbranch" replace color="info">
             <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

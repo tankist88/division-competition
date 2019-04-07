@@ -14,6 +14,7 @@ import Building from './building';
 import ResourceProgress from './resource-progress';
 import BuildingProcess from './building-process';
 import Employee from './employee';
+import Winner from './winner';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 const Routes = ({ match }) => (
@@ -30,6 +31,7 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute path={`${match.url}/resource-progress`} component={ResourceProgress} />
       <ErrorBoundaryRoute path={`${match.url}/building-process`} component={BuildingProcess} />
       <ErrorBoundaryRoute path={`${match.url}/employee`} component={Employee} />
+      <ErrorBoundaryRoute path={`${match.url}/winner`} component={Winner} />
       {/* jhipster-needle-add-route-path - JHipster will routes here */}
     </Switch>
   </div>

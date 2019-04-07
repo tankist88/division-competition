@@ -8,6 +8,8 @@ import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipste
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { IWinner } from 'app/shared/model/winner.model';
+import { getEntities as getWinners } from 'app/entities/winner/winner.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './building.reducer';
 import { IBuilding } from 'app/shared/model/building.model';
 // tslint:disable-next-line:no-unused-variable
@@ -18,12 +20,14 @@ export interface IBuildingUpdateProps extends StateProps, DispatchProps, RouteCo
 
 export interface IBuildingUpdateState {
   isNew: boolean;
+  winnerId: string;
 }
 
 export class BuildingUpdate extends React.Component<IBuildingUpdateProps, IBuildingUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
+      winnerId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -40,6 +44,8 @@ export class BuildingUpdate extends React.Component<IBuildingUpdateProps, IBuild
     } else {
       this.props.getEntity(this.props.match.params.id);
     }
+
+    this.props.getWinners();
   }
 
   saveEntity = (event, errors, values) => {
@@ -63,7 +69,7 @@ export class BuildingUpdate extends React.Component<IBuildingUpdateProps, IBuild
   };
 
   render() {
-    const { buildingEntity, loading, updating } = this.props;
+    const { buildingEntity, winners, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -116,6 +122,19 @@ export class BuildingUpdate extends React.Component<IBuildingUpdateProps, IBuild
                   </Label>
                   <AvField id="building-pictureFile" type="text" name="pictureFile" />
                 </AvGroup>
+                <AvGroup>
+                  <Label for="winner.id">Winner</Label>
+                  <AvInput id="building-winner" type="select" className="form-control" name="winner.id">
+                    <option value="" key="0" />
+                    {winners
+                      ? winners.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/building" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />&nbsp;
                   <span className="d-none d-md-inline">Back</span>
@@ -134,6 +153,7 @@ export class BuildingUpdate extends React.Component<IBuildingUpdateProps, IBuild
 }
 
 const mapStateToProps = (storeState: IRootState) => ({
+  winners: storeState.winner.entities,
   buildingEntity: storeState.building.entity,
   loading: storeState.building.loading,
   updating: storeState.building.updating,
@@ -141,6 +161,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getWinners,
   getEntity,
   updateEntity,
   createEntity,
