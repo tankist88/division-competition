@@ -25,6 +25,9 @@ entity Subbranch {
     name String
 }
 
+entity Winner {
+}
+
 entity CurrentMetric {
 	count Integer,
     finalizedCount Integer,
@@ -84,6 +87,8 @@ relationship ManyToOne {
 
 relationship OneToMany {
 	Building{resources} to Resource,
+    Winner{subbranch} to Subbranch,
+    Winner{building} to Building,
     BuildingProcess{resources} to ResourceProgress
 }
 
