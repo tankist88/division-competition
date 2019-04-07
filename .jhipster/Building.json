@@ -23,6 +23,12 @@
     ],
     "relationships": [
         {
+            "relationshipName": "winner",
+            "otherEntityName": "winner",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
             "relationshipType": "one-to-many",
             "otherEntityName": "resource",
             "otherEntityRelationshipName": "building",

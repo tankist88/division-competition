@@ -8,6 +8,8 @@ import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipste
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { IWinner } from 'app/shared/model/winner.model';
+import { getEntities as getWinners } from 'app/entities/winner/winner.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './subbranch.reducer';
 import { ISubbranch } from 'app/shared/model/subbranch.model';
 // tslint:disable-next-line:no-unused-variable
@@ -18,12 +20,14 @@ export interface ISubbranchUpdateProps extends StateProps, DispatchProps, RouteC
 
 export interface ISubbranchUpdateState {
   isNew: boolean;
+  winnerId: string;
 }
 
 export class SubbranchUpdate extends React.Component<ISubbranchUpdateProps, ISubbranchUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
+      winnerId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -40,6 +44,8 @@ export class SubbranchUpdate extends React.Component<ISubbranchUpdateProps, ISub
     } else {
       this.props.getEntity(this.props.match.params.id);
     }
+
+    this.props.getWinners();
   }
 
   saveEntity = (event, errors, values) => {
@@ -63,7 +69,7 @@ export class SubbranchUpdate extends React.Component<ISubbranchUpdateProps, ISub
   };
 
   render() {
-    const { subbranchEntity, loading, updating } = this.props;
+    const { subbranchEntity, winners, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -118,6 +124,19 @@ export class SubbranchUpdate extends React.Component<ISubbranchUpdateProps, ISub
                   </Label>
                   <AvField id="subbranch-name" type="text" name="name" />
                 </AvGroup>
+                <AvGroup>
+                  <Label for="winner.id">Winner</Label>
+                  <AvInput id="subbranch-winner" type="select" className="form-control" name="winner.id">
+                    <option value="" key="0" />
+                    {winners
+                      ? winners.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/subbranch" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />&nbsp;
                   <span className="d-none d-md-inline">Back</span>
@@ -136,6 +155,7 @@ export class SubbranchUpdate extends React.Component<ISubbranchUpdateProps, ISub
 }
 
 const mapStateToProps = (storeState: IRootState) => ({
+  winners: storeState.winner.entities,
   subbranchEntity: storeState.subbranch.entity,
   loading: storeState.subbranch.loading,
   updating: storeState.subbranch.updating,
@@ -143,6 +163,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getWinners,
   getEntity,
   updateEntity,
   createEntity,

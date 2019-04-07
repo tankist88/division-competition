@@ -44,6 +44,8 @@ export class BuildingDetail extends React.Component<IBuildingDetailProps> {
               <span id="pictureFile">Picture File</span>
             </dt>
             <dd>{buildingEntity.pictureFile}</dd>
+            <dt>Winner</dt>
+            <dd>{buildingEntity.winner ? buildingEntity.winner.id : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/building" replace color="info">
             <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
