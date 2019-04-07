@@ -1,13 +1,11 @@
 package io.github.divisioncompetition.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -24,10 +22,14 @@ public class Winner implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @OneToMany(mappedBy = "winner")
-    private Set<Subbranch> subbranches = new HashSet<>();
-    @OneToMany(mappedBy = "winner")
-    private Set<Building> buildings = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties("winners")
+    private Subbranch subbranch;
+
+    @ManyToOne
+    @JsonIgnoreProperties("winners")
+    private Building building;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -37,54 +39,30 @@ public class Winner implements Serializable {
         this.id = id;
     }
 
-    public Set<Subbranch> getSubbranches() {
-        return subbranches;
+    public Subbranch getSubbranch() {
+        return subbranch;
     }
 
-    public Winner subbranches(Set<Subbranch> subbranches) {
-        this.subbranches = subbranches;
+    public Winner subbranch(Subbranch subbranch) {
+        this.subbranch = subbranch;
         return this;
     }
 
-    public Winner addSubbranch(Subbranch subbranch) {
-        this.subbranches.add(subbranch);
-        subbranch.setWinner(this);
+    public void setSubbranch(Subbranch subbranch) {
+        this.subbranch = subbranch;
+    }
+
+    public Building getBuilding() {
+        return building;
+    }
+
+    public Winner building(Building building) {
+        this.building = building;
         return this;
     }
 
-    public Winner removeSubbranch(Subbranch subbranch) {
-        this.subbranches.remove(subbranch);
-        subbranch.setWinner(null);
-        return this;
-    }
-
-    public void setSubbranches(Set<Subbranch> subbranches) {
-        this.subbranches = subbranches;
-    }
-
-    public Set<Building> getBuildings() {
-        return buildings;
-    }
-
-    public Winner buildings(Set<Building> buildings) {
-        this.buildings = buildings;
-        return this;
-    }
-
-    public Winner addBuilding(Building building) {
-        this.buildings.add(building);
-        building.setWinner(this);
-        return this;
-    }
-
-    public Winner removeBuilding(Building building) {
-        this.buildings.remove(building);
-        building.setWinner(null);
-        return this;
-    }
-
-    public void setBuildings(Set<Building> buildings) {
-        this.buildings = buildings;
+    public void setBuilding(Building building) {
+        this.building = building;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

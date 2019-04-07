@@ -27,7 +27,12 @@ export class WinnerDetail extends React.Component<IWinnerDetailProps> {
           <h2>
             Winner [<b>{winnerEntity.id}</b>]
           </h2>
-          <dl className="jh-entity-details" />
+          <dl className="jh-entity-details">
+            <dt>Subbranch</dt>
+            <dd>{winnerEntity.subbranch ? winnerEntity.subbranch.id : ''}</dd>
+            <dt>Building</dt>
+            <dd>{winnerEntity.building ? winnerEntity.building.id : ''}</dd>
+          </dl>
           <Button tag={Link} to="/entity/winner" replace color="info">
             <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
           </Button>&nbsp;

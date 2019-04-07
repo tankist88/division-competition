@@ -34,6 +34,8 @@ export class Winner extends React.Component<IWinnerProps> {
             <thead>
               <tr>
                 <th>ID</th>
+                <th>Subbranch</th>
+                <th>Building</th>
                 <th />
               </tr>
             </thead>
@@ -45,6 +47,8 @@ export class Winner extends React.Component<IWinnerProps> {
                       {winner.id}
                     </Button>
                   </td>
+                  <td>{winner.subbranch ? <Link to={`subbranch/${winner.subbranch.id}`}>{winner.subbranch.id}</Link> : ''}</td>
+                  <td>{winner.building ? <Link to={`building/${winner.building.id}`}>{winner.building.id}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${winner.id}`} color="info" size="sm">

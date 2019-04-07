@@ -2,7 +2,6 @@ package io.github.divisioncompetition.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -38,10 +37,6 @@ public class Building implements Serializable {
 
     @Column(name = "picture_file")
     private String pictureFile;
-
-    @ManyToOne
-    @JsonIgnoreProperties("buildings")
-    private Winner winner;
 
     @OneToMany(mappedBy = "building")
     private Set<Resource> resources = new HashSet<>();
@@ -104,19 +99,6 @@ public class Building implements Serializable {
 
     public void setPictureFile(String pictureFile) {
         this.pictureFile = pictureFile;
-    }
-
-    public Winner getWinner() {
-        return winner;
-    }
-
-    public Building winner(Winner winner) {
-        this.winner = winner;
-        return this;
-    }
-
-    public void setWinner(Winner winner) {
-        this.winner = winner;
     }
 
     public Set<Resource> getResources() {

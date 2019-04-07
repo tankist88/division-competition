@@ -38,7 +38,6 @@ export class Building extends React.Component<IBuildingProps> {
                 <th>Description</th>
                 <th>Site Url</th>
                 <th>Picture File</th>
-                <th>Winner</th>
                 <th />
               </tr>
             </thead>
@@ -54,7 +53,6 @@ export class Building extends React.Component<IBuildingProps> {
                   <td>{building.description}</td>
                   <td>{building.siteUrl}</td>
                   <td>{building.pictureFile}</td>
-                  <td>{building.winner ? <Link to={`winner/${building.winner.id}`}>{building.winner.id}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${building.id}`} color="info" size="sm">

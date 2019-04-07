@@ -1,7 +1,6 @@
 package io.github.divisioncompetition.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -35,10 +34,6 @@ public class Subbranch implements Serializable {
 
     @Column(name = "name")
     private String name;
-
-    @ManyToOne
-    @JsonIgnoreProperties("subbranches")
-    private Winner winner;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -99,19 +94,6 @@ public class Subbranch implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Winner getWinner() {
-        return winner;
-    }
-
-    public Subbranch winner(Winner winner) {
-        this.winner = winner;
-        return this;
-    }
-
-    public void setWinner(Winner winner) {
-        this.winner = winner;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

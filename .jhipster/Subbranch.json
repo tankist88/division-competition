@@ -21,14 +21,7 @@
             "fieldType": "String"
         }
     ],
-    "relationships": [
-        {
-            "relationshipName": "winner",
-            "otherEntityName": "winner",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        }
-    ],
+    "relationships": [],
     "changelogDate": "20190406152433",
     "entityTableName": "subbranch",
     "dto": "no",

@@ -3,16 +3,18 @@
     "fields": [],
     "relationships": [
         {
-            "relationshipType": "one-to-many",
+            "relationshipType": "many-to-one",
             "otherEntityName": "subbranch",
             "otherEntityRelationshipName": "winner",
-            "relationshipName": "subbranch"
+            "relationshipName": "subbranch",
+            "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-many",
+            "relationshipType": "many-to-one",
             "otherEntityName": "building",
             "otherEntityRelationshipName": "winner",
-            "relationshipName": "building"
+            "relationshipName": "building",
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20190407225734",
